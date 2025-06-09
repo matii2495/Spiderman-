@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de Stock - Sym Arg</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="logo.png">
+  <style>
+    :root {
+      --verde: #4CAF50;
+      --azul: #2196F3;
+      --blanco: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: var(--verde);
+      color: var(--blanco);
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header img { height: 50px; }
+    header span { font-weight: bold; font-size: 0.9em; }
+    main { padding: 20px; }
+    section {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 10px; text-align: left; }
+    button {
+      background-color: var(--azul);
+      color: var(--blanco);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    button:hover { background-color: #0b7dda; }
+    canvas { max-width: 100%; margin-top: 20px; }
+    input[type="text"], input[type="number"] {
+      margin: 5px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo Sym Arg" />
+    <span>Diseñado por Matías Raúl Ojeda</span>
+  </header>
+  <main>
+    <section>
+      <h2>Control de Stock</h2>
+      <input type="text" id="itemName" placeholder="Nombre del artículo" />
+      <input type="number" id="itemQty" placeholder="Cantidad" />
+      <input type="text" id="itemLoc" placeholder="Locación" />
+      <button onclick="addStock()">Agregar</button>
+      <table id="stockTable"><thead><tr><th>Artículo</th><th>Cantidad</th><th>Locación</th><th>Acciones</th></tr></thead><tbody></tbody></table>
+    </section>
+    <section>
+      <h2>Consumo por Locación</h2>
+      <input type="text" id="consumedItem" placeholder="Producto consumido" />
+      <input type="number" id="consumedQty" placeholder="Cantidad" />
+      <input type="text" id="consumedLoc" placeholder="Locación" />
+      <button onclick="addConsumption()">Registrar Consumo</button>
+      <table id="consumptionTable"><thead><tr><th>Producto</th><th>Cantidad</th><th>Locación</th></tr></thead><tbody></tbody></table>
+    </section>
+    <section>
+      <h2>Gráficos</h2>
+      <canvas id="stockChart"></canvas>
+      <canvas id="consumptionChart"></canvas>
+    </section>
+    <section>
+      <h2>Administración</h2>
+      <button onclick="exportData()">Exportar Datos</button>
+      <input type="file" id="importFile" onchange="importData(event)" />
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
